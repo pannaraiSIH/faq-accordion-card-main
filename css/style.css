@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+/* font-family: 'Kumbh Sans', sans-serif; */
+
+:root {
+    --bg-soft-violet: hsl(273, 75%, 66%);
+    --bg-soft-blue: hsl(240, 73%, 65%);
+
+    --heading-clr: hsl(237, 12%, 33%);
+    --para-clr: hsl(240, 6%, 50%);
+
+    --divider: hsl(240, 5%, 91%);
+
+    --fs-para: 0.75rem;
+}
+
+/* ******************** */
+/*  RESET  */
+/* ******************** */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ******************** */
+/*  GLOBAL  */
+/* ******************** */
+
+body {
+    font-family: 'Kumbh Sans', sans-serif;
+    background-image: linear-gradient(to bottom, var(--bg-soft-violet), var(--bg-soft-blue));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ******************** */
+/*  CARD  */
+/* ******************** */
+
+.container {
+    max-width: 60rem;
+    background-color: white;
+    margin: 8rem 1.5rem 4rem;
+    border-radius: 15px;
+    display: grid;
+    grid: 7rem auto / 1fr;
+}
+
+.img-wrap {
+    width: 100%;
+    display: grid;
+    grid: "img-container" 1fr / 1fr;
+    place-items: center;
+    margin-bottom: -4rem;
+}
+
+.main-img-wrap {
+    grid-area: img-container;
+    display: grid;
+    grid: "images" 1fr / 1fr;
+}
+
+.main-img-wrap > * {
+    grid-area: images;
+}
+
+.women {
+    transform: translateY(-6.5rem);
+}
+
+.box {
+    display: none;
+}
+
+.content-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1rem, 4vw, 2.5rem);
+}
+
+.divider {
+    border-bottom: 2px solid var(--divider);
+    cursor: pointer;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: var(--heading-clr);
+    line-height: 2;
+}
+
+h2:hover,
+h2:focus {
+    color: orange;
+}
+
+.summary {
+    font-size: clamp(var(--fs-para), 2vw, 0.9rem);
+    color: var(--heading-clr);
+    max-height: 0; 
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: max-height 1s ease;
+}
+
+.arrow {
+    transition: transform 500ms ease;
+}
+
+.divider.active h2 {
+    color: orange;
+}
+
+.divider.active .summary   {
+    max-height: 15rem;
+    animation: fade 800ms ease;
+}
+
+.divider.active .arrow   {
+    transform: rotate(180deg);
+    transition: transform 500ms ease;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ******************** */
+/*  MEDIA QUERY */
+/* ******************** */
+
+@media screen and (min-width: 48em) {
+    .container {
+        grid: 1fr / 50% 1fr;
+        margin-block: 1rem;
+    }
+
+    .img-wrap {
+        position: relative;
+    }
+
+    .main-img-wrap {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .women {
+        transform: translate(-5rem, 1rem);
+        z-index: 1;
+    }
+
+    .shadow {
+        transform: translate(-5rem, -1rem);
+    }
+
+    .box {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        transform: translate(-7rem, 11rem);
+    }
+
+    .content-wrap {
+        padding-left: 0;
+    }
+}
